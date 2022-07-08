@@ -7,21 +7,21 @@ var submitBtn = document.querySelector("#submit");
 var initialsEl = document.querySelector("#initials");
 var answerResultEl = document.querySelector("#answerResult");
 
-// changing variables depending on amount of questions
+// changing var according to questions
 var ongoingQuestionArray = 0;
 var time = questions.length * 10;
 var timerId;
 
 
 function startCodeQuiz() {
-  //  We want to hide the home screen
+  //  hide home screen
   var homeScreenEl = document.getElementById("homeScreen");
   homeScreenEl.setAttribute("class", "hidden");
 
-  // Next we will make the questiosn section visible 
+  // question visible
   questionsEl.removeAttribute("class");
 
-  // Timer will start counting down
+  // Timer count down
   timerId = setInterval(timerValue, 1000);
 
   quizTimeEl.textContent = time;
@@ -30,17 +30,17 @@ function startCodeQuiz() {
 }
 
 function pullQuestions() {
-  // will pull the questions from its array
+  // pull questions
   var ongoingQuestion = questions[ongoingQuestionArray];
 
-  // pulled questioned will appear on screen
+  // pulled questioned will show
   var questionTitleEl = document.getElementById("questionTitle");
   questionTitleEl.textContent = ongoingQuestion.title;
 
-  // remove any of the old chocies available 
+  // remove old choices 
   choicesEl.innerHTML = "";
 
-  // chnaged the choices for the new questions
+  // new choices for questions
   ongoingQuestion.choices.forEach(function(choice, i) {
     var choiceNode = document.createElement("button");
     choiceNode.setAttribute("class", "choice");
@@ -63,7 +63,7 @@ function choiceSelection() {
       time = 0;
     }
 
-    // show new time on page 
+    // shows new time count 
     quizTimeEl.textContent = time;
     answerResultEl.textContent = "Incorrect";
     answerResultEl.style.color = "#BC4123";
@@ -74,7 +74,7 @@ function choiceSelection() {
     answerResultEl.style.fontSize = "15px";
   }
 
-  // quickly show answer result if right or wrong
+  //shows result
   answerResultEl.setAttribute("class", "answerResult");
   setTimeout(function() {
     answerResultEl.setAttribute("class", "answerResult hidden");
@@ -91,9 +91,9 @@ function choiceSelection() {
 }
 
 function endQuiz() {
-  clearInterval(timerId); // this will stop the timer
+  clearInterval(timerId); // stop timer
 
-  // Quiz COmplete screen will appear 
+  // Quiz Complete 
   var quizCompleteEl = document.getElementById("quizComplete");
   quizCompleteEl.removeAttribute("class");
 
